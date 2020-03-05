@@ -35,14 +35,17 @@ class TlaLexer(RegexLexer):
             (r'VARIABLES?', Keyword.Namespace),
             (r'INSTANCE', Keyword.Namespace),
             (words(("IF", "THEN", "ELSE", "CASE", "OTHER", "LET", "IN")), Keyword.Conditional),
-            (words(("CHOOSE", "\A", "\E", "\X", "\in", "=>", "<=>"), suffix=r'\b'), String), # eh
+            (words(("CHOOSE", "UNION", "\\A", "\\E", "\\X", "\\in", "\\intersect", "=>", "<=>"), suffix=r'\b'), String), # eh
             (r'\\\w+', Name.Builtin), #ok for now
             (r'\\\/|\/\\', Operator),
             (r'\|\->|\->', Operator),
+            (r'\[\]|<>', Operator),
+            (r"'", Operator),
+            (r"\!", Operator),
             (r'[{}]|<<|>>', Name.Entity),
-            (r'!=|>=|<=|:=|[.\\\-~+/*%&^|#]', Operator),
+            (r'\@\@|:>|/=|>=|<=|:=|[.\\\-~+/*%&^|#]', Operator),
             (r'=|<|>', Name.Entity),
-            (r'(\'|").*?\1', String),
+            (r'"([^"]|\\").*?"', String),
             (r'[:\[\](),;]', Punctuation),
             (r'-?\d+', Number),
             ],
