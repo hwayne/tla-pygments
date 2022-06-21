@@ -46,7 +46,7 @@ class TlaLexer(RegexLexer):
             (r'\\\/|\/\\', Operator),
             (r'\|\->|\->', Operator), #TODO make this words
             (r'\[\]|<>[^>]', Name.Entity),
-            (r'>=|<=|:=|\/=|[.\\\-~+/*%&^|#]', Operator),
+            (r'>=|<=|:=|\/=|[.\\\-~+/*%&^|#@]', Operator),
             (r'=|<|>', Operator),
             (r'(").*?\1', String),
             (r'[:\[\](),;]', Punctuation),
@@ -63,7 +63,7 @@ class TlaLexer(RegexLexer):
             (r'(end\s)?(macro|procedure|define|return|process)', Name.Function),
             (words(("with", "do", "if", "else", "elsif", "then", "while", "end", "either", "or", "call", "goto"), suffix=r'\b'), Keyword),
             (words(("await","when"), suffix=r'\b'), Literal.Date), #lol
-            (words(("assert"), suffix=r'\b'), Keyword.Reserved),
+            (words(("assert",), suffix=r'\b'), Keyword.Reserved),
             include('all'),
             ],
         'comment': [
