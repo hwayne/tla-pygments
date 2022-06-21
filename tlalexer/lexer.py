@@ -40,10 +40,11 @@ class TlaLexer(RegexLexer):
             (r'INSTANCE', Keyword.Namespace),
             (r'WITH', Keyword.Namespace),
             (words(("IF", "THEN", "ELSE", "CASE", "OTHER", "LET"), suffix=r'\b'), Keyword.Conditional),
-            (words(("CHOOSE", "\A", "\E", "\X", "\in", "\notin", "=>", "<=>"), suffix=r'\b'), String), # eh
+            (words(("CHOOSE", "UNION", "\\A", "\\E", "\\X", "\\in", "\\notin", "=>", "<=>"), suffix=r'\b'), String), # eh
+            (words(("CHOOSE", "UNION", "\\A", "\\E", "\\X", "\\in", "\\notin", "=>", "<=>"), suffix=r'\b'), String), 
             (r'\\\w+', Name.Builtin), #ok for now
             (r'\\\/|\/\\', Operator),
-            (r'\|\->|\->\'', Operator), #TODO make this words
+            (r'\|\->|\->', Operator), #TODO make this words
             (r'\[\]|<>[^>]', Name.Entity),
             (r'>=|<=|:=|\/=|[.\\\-~+/*%&^|#]', Operator),
             (r'=|<|>', Operator),
